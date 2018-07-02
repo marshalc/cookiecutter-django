@@ -139,11 +139,11 @@ First, get Cookiecutter. Trust me, it's awesome::
 
 Now run it against this repo::
 
-    $ cookiecutter https://github.com/pydanny/cookiecutter-django
+    $ cookiecutter https://github.com/marshalc/cookiecutter-django
 
 You'll be prompted for some values. Provide them, then a Django project will be created for you.
 
-**Warning**: After this point, change 'Daniel Greenfeld', 'pydanny', etc to your own information.
+**Warning**: After this point, change 'Carl Marshall', 'marshalc', etc to your own information.
 
 Answer the prompts with your own desired options_. For example::
 
@@ -155,12 +155,12 @@ Answer the prompts with your own desired options_. For example::
     Resolving deltas: 100% (283/283), done.
     project_name [Project Name]: Reddit Clone
     project_slug [reddit_clone]: reddit
-    author_name [Daniel Roy Greenfeld]: Daniel Greenfeld
-    email [you@example.com]: pydanny@gmail.com
+    author_name [Carl Marshall]: Carl Marshall
+    email [you@example.com]: carl.marshall@gmail.com
     description [A short description of the project.]: A reddit clone.
     domain_name [example.com]: myreddit.com
     version [0.1.0]: 0.0.1
-    timezone [UTC]: America/Los_Angeles
+    timezone [UTC]: Europe/London
     use_whitenoise [n]: n
     use_celery [n]: y
     use_mailhog [n]: n
@@ -205,7 +205,7 @@ Create a git repo and push it there::
     $ git init
     $ git add .
     $ git commit -m "first awesome commit"
-    $ git remote add origin git@github.com:pydanny/redditclone.git
+    $ git remote add origin git@github.com:marshalc/redditclone.git
     $ git push -u origin master
 
 Now take a look at your repo. Don't forget to carefully look at the generated README. Awesome, right?
