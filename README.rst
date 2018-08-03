@@ -273,6 +273,17 @@ If you do rename your fork, I encourage you to submit it to the following places
 .. _cookiecutter: https://github.com/audreyr/cookiecutter
 .. _grid: https://www.djangopackages.com/grids/g/cookiecutters/
 
+
+Update this fork against Pydanny's changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Following instructions from https://stackoverflow.com/questions/3903817/pull-new-updates-from-original-github-repository-into-forked-github-repository in your local copy of this repo do:
+
+* git remote add upstream git@github.com:pydanny/cookiecutter-django.git  -- should only need to do this once
+* git fetch upstream
+* git rebase upstream/master
+* git push --force
+
 Submit a Pull Request
 ~~~~~~~~~~~~~~~~~~~~~~
 
