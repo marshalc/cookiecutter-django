@@ -325,7 +325,6 @@ tags
 
 ### VirtualEnv template
 # Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
 [Bb]in
 [Ii]nclude
 [Ll]ib
@@ -333,6 +332,7 @@ tags
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+.env
 {% endif %}
 
 ### Project template
@@ -342,3 +342,7 @@ MailHog
 {{ cookiecutter.project_slug }}/media/
 
 .pytest_cache/
+
+{% if cookiecutter.use_docker == 'y' %}
+.ipython/
+{%- endif %}
