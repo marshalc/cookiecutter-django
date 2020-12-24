@@ -2,7 +2,7 @@
   "project_name": "My Awesome Project",
   "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
   "description": "Behold My Awesome Project!",
-  "author_name": "Carl Marshall",
+  "author_name": "Daniel Roy Greenfeld",
   "domain_name": "example.com",
   "email": "{{ cookiecutter.author_name.lower()|replace(' ', '-') }}@example.com",
   "version": "0.1.0",
@@ -15,14 +15,14 @@
   ],
   "timezone": "UTC",
   "windows": "n",
-  "use_pycharm": "y",
+  "use_pycharm": "n",
   "use_docker": "n",
   "postgresql_version": [
-    "11.3",
+    "12.3",
+    "11.8",
     "10.8",
     "9.6",
-    "9.5",
-    "9.4"
+    "9.5"
   ],
   "js_task_runner": [
     "None",
@@ -44,6 +44,7 @@
     "SparkPost",
     "Other SMTP"
   ],
+  "use_async": "n",
   "use_drf": "n",
   "custom_bootstrap_compilation": "n",
   "use_compressor": "n",
@@ -55,9 +56,9 @@
   "ci_tool": [
     "None",
     "Travis",
-    "Gitlab"
+    "Gitlab",
+    "Github"
   ],
-  "keep_local_envs_in_vcs": "n",
-
-  "debug": "y"
+  "keep_local_envs_in_vcs": "y",
+  "debug": "n"
 }

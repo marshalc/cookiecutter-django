@@ -75,6 +75,11 @@ def remove_heroku_files():
             # don't remove the file if we are using travisci but not using heroku
             continue
         os.remove(file_name)
+    remove_heroku_build_hooks()
+
+
+def remove_heroku_build_hooks():
+    shutil.rmtree("bin")
 
 
 def remove_gulp_files():
@@ -101,12 +106,25 @@ def remove_celery_files():
         os.remove(file_name)
 
 
+def remove_async_files():
+    file_names = [
+        os.path.join("config", "asgi.py"),
+        os.path.join("config", "websocket.py"),
+    ]
+    for file_name in file_names:
+        os.remove(file_name)
+
+
 def remove_dottravisyml_file():
     os.remove(".travis.yml")
 
 
 def remove_dotgitlabciyml_file():
     os.remove(".gitlab-ci.yml")
+
+
+def remove_dotgithub_folder():
+    shutil.rmtree(".github")
 
 
 def append_to_project_gitignore(path):
@@ -290,6 +308,16 @@ def remove_aws_dockerfile():
 def remove_drf_starter_files():
     os.remove(os.path.join("config", "api_router.py"))
     shutil.rmtree(os.path.join("{{cookiecutter.project_slug}}", "users", "api"))
+    os.remove(
+        os.path.join(
+            "{{cookiecutter.project_slug}}", "users", "tests", "test_drf_urls.py"
+        )
+    )
+    os.remove(
+        os.path.join(
+            "{{cookiecutter.project_slug}}", "users", "tests", "test_drf_views.py"
+        )
+    )
 
 
 def remove_storages_module():
@@ -327,6 +355,8 @@ def main():
 
     if "{{ cookiecutter.use_heroku }}".lower() == "n":
         remove_heroku_files()
+    elif "{{ cookiecutter.use_compressor }}".lower() == "n":
+        remove_heroku_build_hooks()
 
     if (
         "{{ cookiecutter.use_docker }}".lower() == "n"
@@ -369,8 +399,14 @@ def main():
     if "{{ cookiecutter.ci_tool }}".lower() != "gitlab":
         remove_dotgitlabciyml_file()
 
+    if "{{ cookiecutter.ci_tool }}".lower() != "github":
+        remove_dotgithub_folder()
+
     if "{{ cookiecutter.use_drf }}".lower() == "n":
         remove_drf_starter_files()
+
+    if "{{ cookiecutter.use_async }}".lower() == "n":
+        remove_async_files()
 
     print(SUCCESS + "Project initialized, keep up the good work!" + TERMINATOR)
 

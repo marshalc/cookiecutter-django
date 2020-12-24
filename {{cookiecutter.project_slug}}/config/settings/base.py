@@ -5,8 +5,8 @@ from pathlib import Path
 
 import environ
 
-ROOT_DIR = Path(__file__).parents[2]
-# {{ cookiecutter.project_slug }}/)
+ROOT_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
+# {{ cookiecutter.project_slug }}/
 APPS_DIR = ROOT_DIR / "{{ cookiecutter.project_slug }}"
 env = environ.Env()
 
@@ -80,6 +80,7 @@ THIRD_PARTY_APPS = [
 {%- if cookiecutter.use_drf == "y" %}
     "rest_framework",
     "rest_framework.authtoken",
+    "corsheaders",
 {%- endif %}
 ]
 
@@ -134,6 +135,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+{%- if cookiecutter.use_drf == 'y' %}
+    "corsheaders.middleware.CorsMiddleware",
+{%- endif %}
 {%- if cookiecutter.use_whitenoise == 'y' %}
     "whitenoise.middleware.WhiteNoiseMiddleware",
 {%- endif %}
@@ -311,7 +315,7 @@ INSTALLED_APPS += ["compressor"]
 STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
 {%- endif %}
 {% if cookiecutter.use_drf == "y" -%}
-# django-reset-framework
+# django-rest-framework
 # -------------------------------------------------------------------------------
 # django-rest-framework - https://www.django-rest-framework.org/api-guide/settings/
 REST_FRAMEWORK = {
@@ -321,6 +325,10 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
+
+# django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
+CORS_URLS_REGEX = r"^/api/.*$"
+
 {%- endif %}
 # Your stuff...
 # ------------------------------------------------------------------------------
